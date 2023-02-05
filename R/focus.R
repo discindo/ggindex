@@ -11,7 +11,7 @@
 #' x <- 1:10
 #' y <- rep(2, 10)
 #' rank <- 1:10
-#' focus <- rep(c(T, F), each = 5)
+#' focus <- rep(c(TRUE, FALSE), each = 5)
 #' info <- sprintf("Info for %s ", 1:10)
 #' data <- data.frame(x, y, rank, focus, info)
 #'

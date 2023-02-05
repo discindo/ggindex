@@ -1,1 +1,42 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # ggfocus
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of `{ggfocus}` is to plot a scatter with focus points
+
+## Installation
+
+You can install the development version of `{ggfocus}` from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("discindo/ggfocus")
+```
+
+## Example
+
+This is a basic example:
+
+``` r
+library(ggfocus)
+#> Loading required package: ggplot2
+
+x <- 1:10
+y <- rep(2, 10)
+rank <- 1:10
+focus <- rep(c(T, F), each = 5)
+info <- sprintf("Info for %s ", 1:10)
+data <- data.frame(x, y, rank, focus, info)
+
+ggplot2::ggplot(data, ggplot2::aes(x, y, label = rank, focus = focus, info = info)) +
+  geom_focus() +
+  ggplot2::scale_x_continuous(breaks = 1:10) +
+  ggplot2::theme_minimal()
+```
+
+<img src="man/figures/README-example-1.png" width="100%" />
