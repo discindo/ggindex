@@ -56,7 +56,7 @@ GeomFocus <- ggplot2::ggproto(
   required_aes = c("x", "y"),
   default_aes = ggplot2::aes(shape = 19, colour = "black"),
   draw_key = ggplot2::draw_key_point,
-  extra_params = c("highlight", "frame"),
+
   draw_panel = function(data, panel_params, coord, highlight, frame, na.rm = TRUE) {
     coords <- coord$transform(data, panel_params)
 
