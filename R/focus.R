@@ -17,7 +17,7 @@
 #'
 #' ggplot2::ggplot(data, ggplot2::aes(x, y, label = rank, focus = focus, info = info)) +
 #'   geom_focus(highlight = c('red', 'blue', 'red', 'blue', 'red'),
-#'   frame = c('green', 'purple', 'green', 'purple', 'green'))) +
+#'   frame = c('green', 'purple', 'green', 'purple', 'green')) +
 #'   ggplot2::scale_x_continuous(breaks = 1:10) +
 #'   ggplot2::theme_minimal()
 #'
