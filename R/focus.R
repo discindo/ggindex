@@ -16,10 +16,12 @@
 #' data <- data.frame(x, y, rank, focus, info)
 #'
 #' ggplot2::ggplot(data, ggplot2::aes(x, y, label = rank, focus = focus, info = info)) +
-#'   geom_focus(highlight = c('red', 'blue', 'red', 'blue', 'red'),
-#'   frame = c('green', 'purple', 'green', 'purple', 'green')) +
-#'   ggplot2::scale_x_continuous(breaks = 1:10) +
-#'   ggplot2::theme_minimal()
+#'  geom_focus(text_colour = c('red', 'blue', 'red', 'blue', 'red'),
+#'             shape_focus = 24,
+#'             shape_colour = c('green', 'purple', 'green', 'purple', 'green'))  +
+#'  ggplot2::scale_x_continuous(breaks = 1:10) +
+#'  ggplot2::theme_minimal()
+#'
 #'
 #' @export
 geom_focus <-
@@ -30,8 +32,9 @@ geom_focus <-
            na.rm = FALSE,
            show.legend = NA,
            inherit.aes = TRUE,
-           highlight = NULL,
-           frame = NULL,
+           text_colour = NULL,
+           shape_focus = NULL,
+           shape_colour = NULL,
            ...) {
     ggplot2::layer(
       geom = GeomFocus,
@@ -41,8 +44,10 @@ geom_focus <-
       position = position,
       show.legend = show.legend,
       inherit.aes = inherit.aes,
-      params = list(highlight = highlight,
-                    frame = frame, na.rm = na.rm, ...)
+      params = list(text_colour = text_colour,
+                    shape_focus = shape_focus,
+                    shape_colour = shape_colour,
+                    na.rm = na.rm, ...)
     )
   }
 
@@ -57,7 +62,7 @@ GeomFocus <- ggplot2::ggproto(
   default_aes = ggplot2::aes(shape = 19, colour = "black"),
   draw_key = ggplot2::draw_key_point,
 
-  draw_panel = function(data, panel_params, coord, highlight, frame, na.rm = TRUE) {
+  draw_panel = function(data, panel_params, coord, text_colour, shape_focus, shape_colour, na.rm = TRUE) {
     coords <- coord$transform(data, panel_params)
 
     grob1 <- grid::pointsGrob(
@@ -70,27 +75,31 @@ GeomFocus <- ggplot2::ggproto(
     data_focus <- data[data$focus,]
     coords_focus <- coord$transform(data_focus, panel_params)
 
-    if(is.null(frame)) {
-      frame = "red"
+    if(is.null(shape_focus)) {
+      shape_focus = 23
+    }
+
+    if(is.null(shape_colour)) {
+      shape_colour = "red"
     }
 
     grob2 <- grid::pointsGrob(
       coords_focus$x,
       coords_focus$y,
-      pch = 23,
+      pch = shape_focus,
       size = unit(20, units = "pt"),
-      gp = grid::gpar(col = frame)
+      gp = grid::gpar(col = shape_colour)
     )
 
-    if(is.null(highlight)) {
-      highlight = "green"
+    if(is.null(text_colour)) {
+      text_color = "green"
     }
 
     grob3 <- grid::textGrob(
       label = coords_focus$label,
       x = coords_focus$x,
       y = coords_focus$y,
-      gp = grid::gpar(col = highlight)
+      gp = grid::gpar(col = text_colour)
     )
 
     grid::gTree("focus_grob", children = grid::gList(grob1, grob2, grob3))
