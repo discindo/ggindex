@@ -16,7 +16,8 @@
 #' data <- data.frame(x, y, rank, focus, info)
 #'
 #' ggplot2::ggplot(data, ggplot2::aes(x, y, label = rank, focus = focus, info = info)) +
-#'   geom_focus() +
+#'   geom_focus(highlight = c('red', 'blue', 'red', 'blue', 'red'),
+#'   frame = c('green', 'purple', 'green', 'purple', 'green'))) +
 #'   ggplot2::scale_x_continuous(breaks = 1:10) +
 #'   ggplot2::theme_minimal()
 #'
@@ -29,6 +30,8 @@ geom_focus <-
            na.rm = FALSE,
            show.legend = NA,
            inherit.aes = TRUE,
+           highlight = NULL,
+           frame = NULL,
            ...) {
     ggplot2::layer(
       geom = GeomFocus,
@@ -38,7 +41,8 @@ geom_focus <-
       position = position,
       show.legend = show.legend,
       inherit.aes = inherit.aes,
-      params = list(na.rm = na.rm, ...)
+      params = list(highlight = highlight,
+                    frame = frame, na.rm = na.rm, ...)
     )
   }
 
@@ -52,8 +56,8 @@ GeomFocus <- ggplot2::ggproto(
   required_aes = c("x", "y"),
   default_aes = ggplot2::aes(shape = 19, colour = "black"),
   draw_key = ggplot2::draw_key_point,
-
-  draw_panel = function(data, panel_params, coord) {
+  extra_params = c("highlight", "frame"),
+  draw_panel = function(data, panel_params, coord, highlight, frame, na.rm = TRUE) {
     coords <- coord$transform(data, panel_params)
 
     grob1 <- grid::pointsGrob(
@@ -66,19 +70,27 @@ GeomFocus <- ggplot2::ggproto(
     data_focus <- data[data$focus,]
     coords_focus <- coord$transform(data_focus, panel_params)
 
+    if(is.null(frame)) {
+      frame = "red"
+    }
+
     grob2 <- grid::pointsGrob(
       coords_focus$x,
       coords_focus$y,
       pch = 23,
       size = unit(20, units = "pt"),
-      gp = grid::gpar(col = "red")
+      gp = grid::gpar(col = frame)
     )
+
+    if(is.null(highlight)) {
+      highlight = "green"
+    }
 
     grob3 <- grid::textGrob(
       label = coords_focus$label,
       x = coords_focus$x,
       y = coords_focus$y,
-      gp = grid::gpar(col = "blue")
+      gp = grid::gpar(col = highlight)
     )
 
     grid::gTree("focus_grob", children = grid::gList(grob1, grob2, grob3))
