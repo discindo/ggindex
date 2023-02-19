@@ -23,6 +23,14 @@
 #'  ggplot2::theme_minimal()
 #'
 #'
+#'  ggplot2::ggplot(data, ggplot2::aes(x, y, label = rank, focus = focus, info = info)) +
+#'   geom_focus(shape_focus = 24,
+#'            aes(text_colour = focus, shape_colour = focus)) +
+#'   ggplot2::scale_x_continuous(breaks = 1:10) +
+#'   ggplot2::scale_color_viridis_d() +
+#'   ggplot2::theme_minimal()
+#'
+#'
 #' @export
 geom_focus <-
   function(mapping = NULL,
