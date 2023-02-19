@@ -44,10 +44,13 @@ geom_focus <-
       position = position,
       show.legend = show.legend,
       inherit.aes = inherit.aes,
-      params = list(text_colour = text_colour,
-                    shape_focus = shape_focus,
-                    shape_colour = shape_colour,
-                    na.rm = na.rm, ...)
+      params = list(
+        text_colour = text_colour,
+        shape_focus = shape_focus,
+        shape_colour = shape_colour,
+        na.rm = na.rm,
+        ...
+      )
     )
   }
 
@@ -62,7 +65,13 @@ GeomFocus <- ggplot2::ggproto(
   default_aes = ggplot2::aes(shape = 19, colour = "black"),
   draw_key = ggplot2::draw_key_point,
 
-  draw_panel = function(data, panel_params, coord, text_colour, shape_focus, shape_colour, na.rm = TRUE) {
+  draw_panel = function(data,
+                        panel_params,
+                        coord,
+                        text_colour,
+                        shape_focus,
+                        shape_colour,
+                        na.rm = TRUE) {
     coords <- coord$transform(data, panel_params)
 
     grob1 <- grid::pointsGrob(
@@ -72,14 +81,14 @@ GeomFocus <- ggplot2::ggproto(
       gp = grid::gpar(col = coords$colour)
     )
 
-    data_focus <- data[data$focus,]
+    data_focus <- data[data$focus, ]
     coords_focus <- coord$transform(data_focus, panel_params)
 
-    if(is.null(shape_focus)) {
+    if (is.null(shape_focus)) {
       shape_focus = 23
     }
 
-    if(is.null(shape_colour)) {
+    if (is.null(shape_colour)) {
       shape_colour = "red"
     }
 
@@ -91,7 +100,7 @@ GeomFocus <- ggplot2::ggproto(
       gp = grid::gpar(col = shape_colour)
     )
 
-    if(is.null(text_colour)) {
+    if (is.null(text_colour)) {
       text_color = "green"
     }
 
@@ -105,4 +114,3 @@ GeomFocus <- ggplot2::ggproto(
     grid::gTree("focus_grob", children = grid::gList(grob1, grob2, grob3))
   }
 )
-
