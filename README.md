@@ -11,33 +11,20 @@ coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.c
 <!-- badges: end -->
 
 ``` text
-                   .-.
-                 .-' '-.
-              .-'       '-.
-           .-'     .       '-.
-        .-'   .      (2)      '-.
-     .-'  (1)    .        .      '-.
-  .-'   .         .      .    .     '-.
-  |    .     .   (3)      .           |
-  |       .        .     .            |
-  |                                   |
-  |                                   |
-  |   - - - - - - - - - - - - - - -   |
-  |                                   |
-  |       (1)  library                |
-  |       (2)  main hall              |
-  |       (3)  car park               |
-  |                                   |
-  |                                   |
-  |                                   |
-  |                                   |
-  '-.                               .-'
-     '-.         ggindex         .-'
-        '-.                   .-'
-           '-.             .-'
-              '-.       .-'
-                 '-. .-'
-                   '-'
+         .-.
+       .-' '-.
+    .-' . (2) '-.
+ .-' (1)  .  .   '-.
+ |   .  .    .     |
+ |                 |
+ |  (1) library    |
+ |  (2) garden     |
+ |                 |
+ |     ggindex     |
+ '-.             .-'
+    '-.       .-'
+       '-. .-'
+         '-'
 ```
 
 `{ggindex}` marks selected points of a ggplot2 plot with numbered
