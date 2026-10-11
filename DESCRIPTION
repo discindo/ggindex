@@ -1,17 +1,30 @@
-Package: ggfocus
-Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
-Imports: 
+Package: ggindex
+Title: Numbered Focus Points for 'ggplot2' Scatter Plots
+Version: 0.0.0
+Authors@R: c(
+    person("Teofil", "Nakov", , "teofiln@gmail.com", role = "aut"),
+    person("Novica", "Nakov", , "nnovica@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0005-7773-7718"))
+  )
+Description: A 'ggplot2' geom that highlights selected points of a scatter
+    plot with numbered markers and lists their descriptions in a legend
+    keyed by the same numbers, as on an annotated map.
+License: MIT + file LICENSE
+URL: https://github.com/discindo/ggindex, https://discindo.github.io/ggindex/
+BugReports: https://github.com/discindo/ggindex/issues
+Depends:
+    R (>= 4.1)
+Imports:
+    ggplot2 (>= 4.0.0),
     grid,
-    rlang
-RoxygenNote: 7.2.2
-Depends: 
-    ggplot2
+    scales
+Suggests:
+    quarto,
+    sf,
+    testthat (>= 3.0.0),
+    vdiffr
+VignetteBuilder: quarto
+Config/testthat/edition: 3
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.0
