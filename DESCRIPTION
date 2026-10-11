@@ -1,6 +1,6 @@
 Package: ggindex
 Title: Numbered Focus Points for 'ggplot2' Scatter Plots
-Version: 0.0.0
+Version: 0.1.0
 Authors@R: c(
     person("Teofil", "Nakov", , "teofiln@gmail.com", role = "aut"),
     person("Novica", "Nakov", , "nnovica@gmail.com", role = c("aut", "cre"),

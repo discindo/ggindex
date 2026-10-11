@@ -14,7 +14,7 @@ authors:
     given-names: "Novica"
     email: nnovica@gmail.com
     orcid: "https://orcid.org/0009-0005-7773-7718"
-version: 0.0.0 # x-release-please-version
+version: 0.1.0 # x-release-please-version
 date-released: 2026-10-11
 license: MIT
 url: "https://discindo.github.io/ggindex/"
