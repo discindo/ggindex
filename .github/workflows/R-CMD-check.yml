@@ -1,6 +1,9 @@
 name: R CMD Check
 
 on:
+  # Keeps the README badge on the status of main.
+  push:
+    branches: [main]
   pull_request:
     paths-ignore:
       - "*.md"

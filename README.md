@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml)
+[![R-CMD-check](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml/badge.svg?branch=main)](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml)
 [![Codecov test
 coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex)
 <!-- badges: end -->
