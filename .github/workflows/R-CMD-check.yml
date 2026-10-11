@@ -65,8 +65,8 @@ jobs:
           - { os: ubuntu-latest, r: "release" }
           - { os: ubuntu-latest, r: "oldrel-1" }
         # R-devel has no binary packages, so that job compiles every
-        # dependency. Run it weekly and on demand, not on PRs.
-        exclude: ${{ github.event_name == 'pull_request' && fromJSON('[{"config":{"os":"ubuntu-latest","r":"devel","http-user-agent":"release"}}]') || fromJSON('[]') }}
+        # dependency. Run it weekly and on demand, not on PRs or pushes.
+        exclude: ${{ (github.event_name == 'pull_request' || github.event_name == 'push') && fromJSON('[{"config":{"os":"ubuntu-latest","r":"devel","http-user-agent":"release"}}]') || fromJSON('[]') }}
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
