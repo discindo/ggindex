@@ -8,7 +8,7 @@
       "changelog-sections": [
         {"type": "feat",     "section": "New features"},
         {"type": "fix",      "section": "Bug fixes"},
-        {"type": "docs",     "section": "Documentation"},
+        {"type": "docs",     "section": "Documentation", "hidden": true},
         {"type": "perf",     "section": "Performance"},
         {"type": "revert",   "section": "Bug fixes"},
         {"type": "refactor", "hidden": true},
