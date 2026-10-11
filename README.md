@@ -10,6 +10,36 @@
 coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex)
 <!-- badges: end -->
 
+``` text
+                   .-.
+                 .-' '-.
+              .-'       '-.
+           .-'     .       '-.
+        .-'   .      (2)      '-.
+     .-'  (1)    .        .      '-.
+  .-'   .         .      .    .     '-.
+  |    .     .   (3)      .           |
+  |       .        .     .            |
+  |                                   |
+  |                                   |
+  |   - - - - - - - - - - - - - - -   |
+  |                                   |
+  |       (1)  library                |
+  |       (2)  main hall              |
+  |       (3)  car park               |
+  |                                   |
+  |                                   |
+  |                                   |
+  |                                   |
+  '-.                               .-'
+     '-.         ggindex         .-'
+        '-.                   .-'
+           '-.             .-'
+              '-.       .-'
+                 '-. .-'
+                   '-'
+```
+
 `{ggindex}` marks selected points of a ggplot2 plot with numbered
 markers and explains the numbers in a legend, as on an annotated map.
 
