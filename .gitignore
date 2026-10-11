@@ -2,3 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+docs
+/.quarto/
+vignettes/.quarto
+Rplots.pdf

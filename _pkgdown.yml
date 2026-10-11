@@ -1,0 +1,16 @@
+url: https://discindo.github.io/ggindex/
+template:
+  bootstrap: 5
+# release-please versions never carry a .9000 suffix, so build only the
+# release site.
+development:
+  mode: release
+
+reference:
+  - title: Geom
+    contents:
+      - geom_focus
+  - title: Scale and legend
+    contents:
+      - scale_info_discrete
+      - draw_key_focus

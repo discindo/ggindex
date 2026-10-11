@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "ggindex: Numbered Focus Points for ggplot2 Scatter Plots"
+abstract: >-
+  A ggplot2 geom that highlights selected points of a scatter plot with
+  numbered markers and lists their descriptions in a legend keyed by the
+  same numbers, as on an annotated map.
+authors:
+  - family-names: "Nakov"
+    given-names: "Teofil"
+    email: teofiln@gmail.com
+  - family-names: "Nakov"
+    given-names: "Novica"
+    email: nnovica@gmail.com
+    orcid: "https://orcid.org/0009-0005-7773-7718"
+version: 0.0.0 # x-release-please-version
+date-released: 2026-10-11
+license: MIT
+url: "https://discindo.github.io/ggindex/"
+repository-code: "https://github.com/discindo/ggindex"
