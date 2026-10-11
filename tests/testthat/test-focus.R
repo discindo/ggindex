@@ -44,7 +44,10 @@ test_that("legend key shows the label of its entry", {
   keys <- lapply(seq_len(nrow(decor$data)), function(i) {
     decor$draw_key(decor$data[i, ], decor$params, NULL)
   })
-  expect_equal(vapply(keys, function(k) k$children[[2]]$label, ""), c("1", "2", "3", "4"))
+  expect_equal(
+    vapply(keys, function(k) k$children[[2]]$label, ""),
+    c("1", "2", "3", "4")
+  )
 })
 
 test_that("info entries are numbered in data order when label is not mapped", {

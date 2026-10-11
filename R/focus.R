@@ -292,7 +292,10 @@ focus_prepare <- function(data) {
   data <- focus_subset(data)
   if (is.null(data$label)) {
     if (is.null(data$info)) {
-      stop("`geom_focus()` requires the `label` or `info` aesthetic.", call. = FALSE)
+      stop(
+        "`geom_focus()` requires the `label` or `info` aesthetic.",
+        call. = FALSE
+      )
     }
     info <- as.character(data$info)
     data$label <- match(info, unique(info))
@@ -309,7 +312,10 @@ focus_subset <- function(data) {
 
 focus_text_gpar <- function(data, colour, size) {
   grid::gpar(
-    col = ggplot2::alpha(if (is.null(colour)) data$colour else colour, data$alpha),
+    col = ggplot2::alpha(
+      if (is.null(colour)) data$colour else colour,
+      data$alpha
+    ),
     fontsize = size * ggplot2::.pt,
     fontfamily = data$family,
     fontface = data$fontface
