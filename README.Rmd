@@ -13,29 +13,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ggindex
+# ggindex <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml/badge.svg?branch=main)](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml)
 [![Codecov test coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex)
 <!-- badges: end -->
-
-```text
-         .-.
-       .-' '-.
-    .-' . (2) '-.
- .-' (1)  .  .   '-.
- |   .  .    .     |
- |                 |
- |  (1) library    |
- |  (2) garden     |
- |                 |
- |     ggindex     |
- '-.             .-'
-    '-.       .-'
-       '-. .-'
-         '-'
-```
 
 `{ggindex}` marks selected points of a ggplot2 plot with numbered markers
 and explains the numbers in a legend, as on an annotated map.
