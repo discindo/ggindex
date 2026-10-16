@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ggindex
+# ggindex <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
@@ -9,23 +9,6 @@
 [![Codecov test
 coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex)
 <!-- badges: end -->
-
-``` text
-         .-.
-       .-' '-.
-    .-' . (2) '-.
- .-' (1)  .  .   '-.
- |   .  .    .     |
- |                 |
- |  (1) library    |
- |  (2) garden     |
- |                 |
- |     ggindex     |
- '-.             .-'
-    '-.       .-'
-       '-. .-'
-         '-'
-```
 
 `{ggindex}` marks selected points of a ggplot2 plot with numbered
 markers and explains the numbers in a legend, as on an annotated map.
