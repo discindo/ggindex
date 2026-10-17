@@ -17,8 +17,20 @@ omitted.}
 \item{guide}{A function used to create a guide or its name. See
 \code{\link[ggplot2:guides]{guides()}} for more information.}
 }
+\value{
+A ggplot2 scale object.
+}
 \description{
 Builds the legend that lists the description of each numbered marker. It
 is added automatically when \code{info} is mapped; call it directly to change the
 legend title or other legend settings.
+}
+\examples{
+cars <- mtcars
+cars$model <- rownames(cars)
+library(ggplot2)
+ggplot(cars, aes(wt, mpg)) +
+  geom_point(colour = "grey60") +
+  geom_focus(aes(label = rank(-mpg), focus = mpg > 30, info = model)) +
+  scale_info_discrete(name = "Most efficient")
 }

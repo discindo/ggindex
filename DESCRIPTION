@@ -5,7 +5,8 @@ Authors@R: c(
     person("Teofil", "Nakov", , "teofiln@gmail.com", role = "aut",
           comment = c(ORCID = "0009-0000-9589-5748")),
     person("Novica", "Nakov", , "nnovica@gmail.com", role = c("aut", "cre"),
-           comment = c(ORCID = "0009-0005-7773-7718"))
+           comment = c(ORCID = "0009-0005-7773-7718")),
+    person("Discindo", role = "cph")
   )
 Description: A 'ggplot2' geom that highlights selected points of a scatter
     plot with numbered markers and lists their descriptions in a legend

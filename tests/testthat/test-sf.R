@@ -1,5 +1,6 @@
 test_that("geom_sf_focus numbers simple features", {
   skip_if_not_installed("sf")
+  skip_if_not_installed("vdiffr")
   nc <- sf::st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
   nc <- sf::st_transform(nc, 32119)
   nc_large <- nc[nc$AREA > 0.2, ]

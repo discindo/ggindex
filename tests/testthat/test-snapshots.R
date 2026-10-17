@@ -1,3 +1,5 @@
+skip_if_not_installed("vdiffr")
+
 cars <- mtcars
 cars$model <- rownames(cars)
 cars$rank <- rank(-cars$mpg, ties.method = "first")

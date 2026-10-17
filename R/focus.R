@@ -217,6 +217,15 @@ GeomFocus <- ggplot2::ggproto(
 #' @param params A list of layer parameters.
 #' @param size Width and height of the key in mm (unused).
 #' @return A grob.
+#' @examples
+#' key <- data.frame(
+#'   colour = "black", fill = "white", shape = 21, size = 6, stroke = 0.5,
+#'   alpha = NA, family = "", fontface = 1, info = "Mazda RX4"
+#' )
+#' params <- list(info_labels = c("Mazda RX4" = "1"), text.size = 3.87)
+#' grob <- draw_key_focus(key, params)
+#' grid::grid.newpage()
+#' grid::grid.draw(grob)
 #' @export
 draw_key_focus <- function(data, params, size) {
   label <- params$info_labels[as.character(data$info)]
@@ -340,6 +349,15 @@ focus_marker_gpar <- function(data) {
 #'
 #' @inheritParams ggplot2::discrete_scale
 #' @param ... Other arguments passed on to [ggplot2::discrete_scale()].
+#' @return A ggplot2 scale object.
+#' @examples
+#' cars <- mtcars
+#' cars$model <- rownames(cars)
+#' library(ggplot2)
+#' ggplot(cars, aes(wt, mpg)) +
+#'   geom_point(colour = "grey60") +
+#'   geom_focus(aes(label = rank(-mpg), focus = mpg > 30, info = model)) +
+#'   scale_info_discrete(name = "Most efficient")
 #' @export
 scale_info_discrete <- function(
   name = ggplot2::waiver(),
