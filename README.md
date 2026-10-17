@@ -15,6 +15,12 @@ markers and explains the numbers in a legend, as on an annotated map.
 
 ## Installation
 
+Install the released version of `{ggindex}` from CRAN with:
+
+``` r
+install.packages("ggindex")
+```
+
 You can install the development version of `{ggindex}` from
 [GitHub](https://github.com/) with:
 

@@ -21,3 +21,13 @@ Draws the marker of \code{\link[=geom_focus]{geom_focus()}} with the label of it
 inside. The label is looked up from the \code{info} value of the key in
 \code{params$info_labels}; without a match only the marker is drawn.
 }
+\examples{
+key <- data.frame(
+  colour = "black", fill = "white", shape = 21, size = 6, stroke = 0.5,
+  alpha = NA, family = "", fontface = 1, info = "Mazda RX4"
+)
+params <- list(info_labels = c("Mazda RX4" = "1"), text.size = 3.87)
+grob <- draw_key_focus(key, params)
+grid::grid.newpage()
+grid::grid.draw(grob)
+}
