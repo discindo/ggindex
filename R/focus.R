@@ -72,7 +72,9 @@
 #'   geom_sf_focus(aes(info = NAME), data = nc_large) +
 #'   theme_void()
 #'
-#' @return A ggplot2 layer.
+#' @return A ggplot2 layer (a `ggproto` object of class `LayerInstance`, or
+#'   `LayerSf` for `geom_sf_focus()`). Add it to a plot with `+` to draw the
+#'   numbered markers.
 #' @export
 geom_focus <- function(
   mapping = NULL,
@@ -216,7 +218,9 @@ GeomFocus <- ggplot2::ggproto(
 #' @param data A single row data frame with the scaled aesthetics.
 #' @param params A list of layer parameters.
 #' @param size Width and height of the key in mm (unused).
-#' @return A grob.
+#' @return A grid graphical object (grob) drawn as the key of a legend entry:
+#'   a `gTree` with the marker and its label, or a `points` grob with the
+#'   marker only when no label is found.
 #' @examples
 #' key <- data.frame(
 #'   colour = "black", fill = "white", shape = 21, size = 6, stroke = 0.5,
@@ -349,7 +353,9 @@ focus_marker_gpar <- function(data) {
 #'
 #' @inheritParams ggplot2::discrete_scale
 #' @param ... Other arguments passed on to [ggplot2::discrete_scale()].
-#' @return A ggplot2 scale object.
+#' @return A ggplot2 scale object (class `ScaleDiscreteIdentity`, a
+#'   `ggproto` object). Add it to a plot with `+` to control the legend that
+#'   maps each `info` value to its numbered marker.
 #' @examples
 #' cars <- mtcars
 #' cars$model <- rownames(cars)

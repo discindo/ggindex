@@ -14,7 +14,9 @@ draw_key_focus(data, params, size)
 \item{size}{Width and height of the key in mm (unused).}
 }
 \value{
-A grob.
+A grid graphical object (grob) drawn as the key of a legend entry:
+a \code{gTree} with the marker and its label, or a \code{points} grob with the
+marker only when no label is found.
 }
 \description{
 Draws the marker of \code{\link[=geom_focus]{geom_focus()}} with the label of its legend entry

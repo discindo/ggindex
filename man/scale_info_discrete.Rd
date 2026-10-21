@@ -18,7 +18,9 @@ omitted.}
 \code{\link[ggplot2:guides]{guides()}} for more information.}
 }
 \value{
-A ggplot2 scale object.
+A ggplot2 scale object (class \code{ScaleDiscreteIdentity}, a
+\code{ggproto} object). Add it to a plot with \code{+} to control the legend that
+maps each \code{info} value to its numbered marker.
 }
 \description{
 Builds the legend that lists the description of each numbered marker. It
