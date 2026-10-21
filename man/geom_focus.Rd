@@ -138,7 +138,9 @@ the result if the data is not projected, but you can ignore this except
 when you really care about the exact locations.}
 }
 \value{
-A ggplot2 layer.
+A ggplot2 layer (a \code{ggproto} object of class \code{LayerInstance}, or
+\code{LayerSf} for \code{geom_sf_focus()}). Add it to a plot with \code{+} to draw the
+numbered markers.
 }
 \description{
 Draws a marker carrying a text \code{label} (typically a rank or index) at each
