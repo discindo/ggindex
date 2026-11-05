@@ -17,7 +17,11 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml/badge.svg?branch=main)](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml)
-[![Codecov test coverage](https://codecov.io/gh/discindo/ggindex/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/ggindex)](https://CRAN.R-project.org/package=ggindex)
+[![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggindex)](https://CRAN.R-project.org/package=ggindex)
+[![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.ggindex-blue)](https://doi.org/10.32614/CRAN.package.ggindex)
+[![Coverage Status](https://codecov.io/gh/discindo/ggindex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex/branch/main)
+[![ggindex status badge](https://discindo.r-universe.dev/ggindex/badges/version)](https://discindo.r-universe.dev/ggindex)
 <!-- badges: end -->
 
 `{ggindex}` marks selected points of a ggplot2 plot with numbered markers
