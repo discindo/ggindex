@@ -2,6 +2,7 @@
 
 S3method(grid::makeContent,focus_grob)
 export(GeomFocus)
+export(StatSfFocus)
 export(draw_key_focus)
 export(geom_focus)
 export(geom_sf_focus)
