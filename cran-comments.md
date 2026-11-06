@@ -6,8 +6,12 @@ This is a bug fix release.
 
 Adds more documentation.
 
-Updates the DESCRIPTION to reflect that it can be used on more than scatter plots.
+Updates the DESCRIPTION to reflect that it 
+can be used on more than scatter plots.
 
+devtools::check(remote = TRUE, manual = TRUE) shows 403 
+on stackoverflow links, but the links are correct and
+working. Maybe SO blocks automatic checks on its content.
 
 ## Test environments
 
