@@ -1,3 +1,14 @@
+# ggindex 0.1.1
+
+## Bug fixes
+
+* geom_sf_focus() numbers info entries alphabetically  ([#22](https://github.com/discindo/ggindex/issues/22)) ([442ede7](https://github.com/discindo/ggindex/commit/442ede79b69a1b730777273282c67ecbb72bbd1f))
+
+
+## Documentation
+
+* add articles beyond scatter plots ([#24](https://github.com/discindo/ggindex/issues/24)) ([7ee74ed](https://github.com/discindo/ggindex/commit/7ee74ed7ae64fa22eef73dded9a6390e5a60b8c6))
+
 # ggindex 0.1.0
 
 * Initial release.
