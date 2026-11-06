@@ -4,6 +4,7 @@
 \alias{geom_focus}
 \alias{geom_sf_focus}
 \alias{GeomFocus}
+\alias{StatSfFocus}
 \title{Numbered focus points}
 \usage{
 geom_focus(
@@ -23,7 +24,7 @@ geom_focus(
 geom_sf_focus(
   mapping = ggplot2::aes(),
   data = NULL,
-  stat = "sf_coordinates",
+  stat = StatSfFocus,
   position = "identity",
   ...,
   text.colour = NULL,
@@ -173,7 +174,13 @@ Optional: \code{label} (numbers the \code{info} entries when not mapped), \code{
 
 \code{geom_sf_focus()} places the markers on simple features from the 'sf'
 package, at the coordinates computed by \code{\link[ggplot2:stat_sf_coordinates]{ggplot2::stat_sf_coordinates()}}:
-the point itself, or a point on the surface of a line or polygon.
+the point itself, or a point on the surface of a line or polygon. Its
+default stat, \code{StatSfFocus}, numbers the \code{info} entries before computing
+the coordinates, so the numbers follow the order of the data.
+
+Stats that work per group, such as \code{stat = "summary"}, return the groups
+in sorted order. With such a stat, map \code{label} to choose the numbers;
+otherwise the \code{info} entries are numbered in the order of the stat output.
 }
 
 \examples{
