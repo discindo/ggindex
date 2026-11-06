@@ -30,7 +30,13 @@
 #'
 #' `geom_sf_focus()` places the markers on simple features from the 'sf'
 #' package, at the coordinates computed by [ggplot2::stat_sf_coordinates()]:
-#' the point itself, or a point on the surface of a line or polygon.
+#' the point itself, or a point on the surface of a line or polygon. Its
+#' default stat, `StatSfFocus`, numbers the `info` entries before computing
+#' the coordinates, so the numbers follow the order of the data.
+#'
+#' Stats that work per group, such as `stat = "summary"`, return the groups
+#' in sorted order. With such a stat, map `label` to choose the numbers;
+#' otherwise the `info` entries are numbered in the order of the stat output.
 #'
 #' @inheritParams ggplot2::geom_point
 #' @inheritParams ggplot2::stat_sf_coordinates
@@ -111,7 +117,7 @@ geom_focus <- function(
 geom_sf_focus <- function(
   mapping = ggplot2::aes(),
   data = NULL,
-  stat = "sf_coordinates",
+  stat = StatSfFocus,
   position = "identity",
   ...,
   text.colour = NULL,
@@ -206,6 +212,22 @@ GeomFocus <- ggplot2::ggproto(
 
   draw_key = function(data, params, size) {
     draw_key_focus(data, params, size)
+  }
+)
+
+#' @rdname geom_focus
+#' @format NULL
+#' @usage NULL
+#' @export
+StatSfFocus <- ggplot2::ggproto(
+  "StatSfFocus",
+  ggplot2::StatSfCoordinates,
+
+  # stat_sf_coordinates() computes per group, and `info` sets the groups,
+  # which come back in sorted order. Number the entries here, while the
+  # rows are still in data order.
+  setup_data = function(data, params) {
+    focus_prepare(data)
   }
 )
 
