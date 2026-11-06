@@ -1,6 +1,6 @@
 Package: ggindex
 Title: Numbered Focus Points for 'ggplot2' Plots
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Teofil", "Nakov", , "teofiln@gmail.com", role = "aut",
           comment = c(ORCID = "0009-0000-9589-5748")),
