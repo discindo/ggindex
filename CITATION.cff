@@ -1,11 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
-title: "ggindex: Numbered Focus Points for ggplot2 Scatter Plots"
+title: "ggindex: Numbered Focus Points for ggplot2 Plots"
 abstract: >-
-  A ggplot2 geom that highlights selected points of a scatter plot with
-  numbered markers and lists their descriptions in a legend keyed by the
-  same numbers, as on an annotated map.
+  A ggplot2 geom that highlights selected observations of a plot, such as
+  points of a scatter plot, events on a line chart or features on a map,
+  with numbered markers and lists their descriptions in a legend keyed by
+  the same numbers, as on an annotated map.
 authors:
   - family-names: "Nakov"
     given-names: "Teofil"

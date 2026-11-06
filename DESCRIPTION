@@ -1,5 +1,5 @@
 Package: ggindex
-Title: Numbered Focus Points for 'ggplot2' Scatter Plots
+Title: Numbered Focus Points for 'ggplot2' Plots
 Version: 0.1.0
 Authors@R: c(
     person("Teofil", "Nakov", , "teofiln@gmail.com", role = "aut",
@@ -8,9 +8,10 @@ Authors@R: c(
            comment = c(ORCID = "0009-0005-7773-7718")),
     person("Discindo", role = "cph")
   )
-Description: A 'ggplot2' geom that highlights selected points of a scatter
-    plot with numbered markers and lists their descriptions in a legend
-    keyed by the same numbers, as on an annotated map.
+Description: A 'ggplot2' geom that highlights selected observations of a
+    plot, such as points of a scatter plot, events on a line chart or
+    features on a map, with numbered markers and lists their descriptions
+    in a legend keyed by the same numbers, as on an annotated map.
 License: MIT + file LICENSE
 URL: https://github.com/discindo/ggindex, https://discindo.github.io/ggindex/
 BugReports: https://github.com/discindo/ggindex/issues
