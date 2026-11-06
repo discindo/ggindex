@@ -17,6 +17,13 @@ the numbers in a legend. ggplot2 has no direct way to draw this: a legend key
 shows a symbol, not the number that labels a point. `geom_focus()` draws the
 numbered markers and builds the legend for you.
 
+The examples here are scatter plots and maps. For line charts, bar charts
+and distributions, see [Numbered markers on other plots](other-plots.html).
+For colours, shapes, fonts, themes and facets, see
+[Styling numbered markers](styling.html). For why `geom_text()` and
+`geom_label()` aren't enough, see
+[Why not geom_text() or geom_label()?](geom-label.html).
+
 ```{r}
 #| label: setup
 library(ggplot2)
@@ -119,71 +126,4 @@ ggplot(nc) +
   geom_sf_focus(aes(info = NAME), data = nc_large) +
   scale_info_discrete("Largest counties") +
   theme_void()
-```
-
-## Styling the markers
-
-The markers use the standard `colour`, `fill`, `shape`, `size`, `stroke` and
-`alpha` aesthetics, so they work with the usual ggplot2 scales. Here the most
-efficient car of each cylinder class is filled by class.
-
-```{r}
-#| label: scales
-cars$best <- cars$mpg == ave(cars$mpg, cars$cyl, FUN = max)
-
-ggplot(cars, aes(wt, mpg)) +
-  geom_point(colour = "grey60") +
-  geom_focus(
-    aes(label = rank, focus = best, info = model, fill = factor(cyl)),
-    shape = 22,
-    size = 7
-  ) +
-  scale_fill_brewer("Cylinders", palette = "Set2") +
-  scale_info_discrete("Best in class") +
-  theme_minimal()
-```
-
-## Styling the numbers
-
-The numbers take the `family` and `fontface` aesthetics and the `text.colour`
-and `text.size` parameters. By default they use the marker's `colour`.
-
-```{r}
-#| label: text
-ggplot(cars, aes(wt, mpg)) +
-  geom_point(colour = "grey60") +
-  geom_focus(
-    aes(label = rank, focus = rank <= 5),
-    fill = "grey20",
-    text.colour = "white",
-    fontface = "bold"
-  ) +
-  theme_minimal()
-```
-
-## Themes
-
-Without other settings, markers are filled with the theme's `paper` colour
-and drawn with its `ink` colour, so they follow the theme.
-
-```{r}
-#| label: theme
-ggplot(cars, aes(wt, mpg)) +
-  geom_point(colour = "grey50") +
-  geom_focus(aes(label = rank, focus = rank <= 5, info = model)) +
-  theme_minimal(ink = "white", paper = "grey15")
-```
-
-## Facets
-
-Each panel numbers its own focus points, and a panel without focus points
-shows only the other layers.
-
-```{r}
-#| label: facets
-ggplot(cars, aes(wt, mpg)) +
-  geom_point(colour = "grey60") +
-  geom_focus(aes(label = rank, focus = best, info = model)) +
-  facet_wrap(vars(cyl), labeller = label_both) +
-  theme_minimal()
 ```

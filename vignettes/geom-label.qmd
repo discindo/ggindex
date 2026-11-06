@@ -1,0 +1,125 @@
+---
+title: "Why not geom_text() or geom_label()?"
+vignette: >
+  %\VignetteIndexEntry{Why not geom_text() or geom_label()?}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    fig-width: 7
+    fig-height: 4
+---
+
+A campus map numbers its buildings and lists them in an index next to the
+map, so a reader can find the library or the sports centre at a glance. 
+
+This Stack Overflow question [Adding index to points in ggplot](https://stackoverflow.com/questions/48869642/adding-index-to-points-in-ggplot)
+shows such a map and asks how to draw the same kind of index in ggplot2,
+noting that there is no built-in way.
+
+The accepted answer is a workaround.
+
+The same problem comes up in other questions, all quite old:
+[numbered point labels plus a legend in a scatterplot](https://stackoverflow.com/questions/24801987/numbered-point-labels-plus-a-legend-in-a-scatterplot) and [ggplot2: numbered points on plot and in legend](https://stackoverflow.com/questions/57024684/ggplot2-numbered-points-on-plot-and-in-legend).
+
+ggindex tries to solve this problem.
+
+ggplot2 draws the numbers easily with `geom_text()` or `geom_label()`. 
+The issue is to be able to draw the legend.
+
+The examples below use the data from the question: five points, each with a
+number and a description.
+
+```{r}
+#| label: setup
+library(ggplot2)
+library(ggindex)
+```
+
+```{r}
+#| label: data
+df <- data.frame(x = 6:10, y = 6:10, id = 1:5)
+df$label <- paste0("Label", df$id)
+```
+
+## Numbers without a legend
+
+`geom_label()` numbers the points, but nothing explains the numbers.
+
+```{r}
+#| label: label
+ggplot(df, aes(x, y)) +
+  geom_point() +
+  geom_label(aes(label = id), nudge_x = 0.2) +
+  theme_minimal()
+```
+
+Mapping the description to another aesthetic, such as `fill`, adds a legend.
+Its keys show the point symbol, not the numbers, so the reader still can't
+tell which point is which.
+
+```{r}
+#| label: fill
+ggplot(df, aes(x, y)) +
+  geom_point(aes(fill = label)) +
+  geom_label(aes(label = id), nudge_x = 0.2) +
+  theme_minimal()
+```
+
+## The workaround: numbers in the legend text
+
+The accepted answer pastes the number into the description, maps the result
+to `fill` on an invisible layer, and hides the legend keys.
+
+```{r}
+#| label: workaround
+df$legend <- paste0(df$id, ": ", df$label)
+
+ggplot(df, aes(x, y)) +
+  geom_point(aes(fill = legend), alpha = 0) +
+  geom_point() +
+  geom_label(aes(label = id), nudge_x = 0.2) +
+  scale_fill_discrete(name = "Index") +
+  theme_minimal() +
+  theme(legend.key.width = unit(0, "cm"))
+```
+
+The result reads right, but the link between numbers and descriptions is
+held together by hand:
+
+- The legend is text only. The markers on the plot and in the legend don't
+  match.
+- The entries are sorted as text, so with ten or more points "10: ..."
+  comes before "2: ...". Keeping the number order needs a factor with
+  explicit levels.
+- `fill` is used up by an invisible layer and can't show another variable.
+- The numbers appear in two places, `id` and `legend`, which must be kept
+  in sync.
+
+## What ggindex adds
+
+ggindex adds an `info` aesthetic with its own scale. Its legend keys draw the
+marker with the `label` of each entry, so the numbers on the plot and in the
+legend come from the same mapping.
+
+```{r}
+#| label: focus
+ggplot(df, aes(x, y, label = id, info = label)) +
+  geom_focus() +
+  scale_info_discrete("Index") +
+  theme_minimal()
+```
+
+- Legend entries are sorted by `label`, as numbers.
+- `colour` and `fill` style the markers and stay free for other variables.
+- Without `label`, the `info` entries are numbered for you.
+- `focus` numbers a subset of the points and leaves the rest to other
+  layers.
+- Maps work the same way with `geom_sf_focus()`.
+
+See [Get started](ggindex.html) for these features,
+[Styling numbered markers](styling.html) for colours, fonts, themes and facets,
+and [Numbered markers on other plots](other-plots.html) for line charts, bar
+charts and distributions.

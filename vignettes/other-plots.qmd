@@ -1,0 +1,177 @@
+---
+title: "Numbered markers on other plots"
+vignette: >
+  %\VignetteIndexEntry{Numbered markers on other plots}
+  %\VignetteEngine{quarto::html}
+  %\VignetteEncoding{UTF-8}
+knitr:
+  opts_chunk:
+    collapse: true
+    comment: "#>"
+    fig-width: 7
+    fig-height: 4
+---
+
+Scatter plots and maps are the most obvious choicies where numbered markers
+can be used. However, `geom_focus()` needs only an `x` and a `y` position, so it isn't limited to scatter plots. Positions can be continuous, discrete or dates, and can come from your data or from a stat. This article adds numbered markers to line charts, bar charts and distributions.
+
+```{r}
+#| label: setup
+library(ggplot2)
+library(ggindex)
+```
+
+## Events on a line chart
+
+To mark events on a time series, put them in their own data frame and pass
+it to `geom_focus()` with `data`. Here each event gets the unemployment value
+of its date, so the marker sits on the line.
+
+```{r}
+#| label: line
+events <- data.frame(
+  date = as.Date(c("2001-03-01", "2007-12-01", "2008-09-15")),
+  event = c(
+    "Dot-com recession begins",
+    "Great Recession begins",
+    "Lehman Brothers collapses"
+  )
+)
+events$unemploy <- approx(economics$date, economics$unemploy, events$date)$y
+
+ggplot(economics, aes(date, unemploy)) +
+  geom_line() +
+  geom_focus(aes(info = event), data = events) +
+  scale_info_discrete("Events") +
+  labs(x = NULL, y = "Unemployed (thousands)") +
+  theme_minimal()
+```
+
+## Bar charts
+
+On a discrete axis, markers sit at the centre of each category. Nudge them
+past the end of the bar with `position_nudge()`. Here the bars are
+horizontal, so the markers move along `x`.
+
+```{r}
+#| label: bar
+classes <- as.data.frame(table(class = mpg$class), responseName = "n")
+
+ggplot(classes, aes(n, class)) +
+  geom_col(fill = "grey80") +
+  geom_focus(
+    aes(info = class, focus = n > 40),
+    position = position_nudge(x = 3)
+  ) +
+  scale_info_discrete("Most common") +
+  labs(x = "Models", y = NULL) +
+  theme_minimal()
+```
+
+## Points in a distribution
+
+Number single observations on top of a box plot, such as outliers you want
+to name. Observations that share an `info` value share a number: both new
+beetles are 2.
+
+```{r}
+#| label: box
+ggplot(mpg, aes(class, hwy)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_focus(aes(info = model, focus = hwy > 40)) +
+  scale_info_discrete("Outliers") +
+  labs(x = NULL, y = "Highway miles per gallon") +
+  theme_minimal()
+```
+
+## Summary statistics on a distribution
+
+To mark the mean, median and mode on a density curve, compute them first and
+look up the height of the curve at each one with `approx()`. Putting the
+value in `info` makes the legend double as a table of the statistics.
+
+```{r}
+#| label: density
+waiting <- faithful$waiting
+dens <- density(waiting)
+centres <- data.frame(
+  stat = c("Mean", "Median", "Mode"),
+  x = c(mean(waiting), median(waiting), dens$x[which.max(dens$y)])
+)
+centres$y <- approx(dens$x, dens$y, centres$x)$y
+centres$info <- sprintf("%s: %.1f min", centres$stat, centres$x)
+
+ggplot(faithful, aes(waiting)) +
+  geom_density(fill = "grey90") +
+  geom_segment(
+    aes(x = x, xend = x, y = 0, yend = y),
+    data = centres,
+    colour = "grey50",
+    linetype = "dashed"
+  ) +
+  geom_focus(aes(x, y, info = info), data = centres) +
+  scale_info_discrete(NULL) +
+  labs(x = "Minutes to next eruption", y = "Density") +
+  theme_minimal()
+```
+
+On a cumulative distribution, quantiles are points on the curve: the median
+is where it crosses 0.5. Label the markers with the percentage and explain it
+in the legend.
+
+```{r}
+#| label: ecdf
+quartiles <- data.frame(p = c(0.25, 0.5, 0.75))
+quartiles$waiting <- quantile(waiting, quartiles$p, type = 1)
+quartiles$label <- quartiles$p * 100
+quartiles$info <- sprintf(
+  "%g%% erupt within %g min",
+  quartiles$label,
+  quartiles$waiting
+)
+
+ggplot(faithful, aes(waiting)) +
+  stat_ecdf(geom = "step") +
+  geom_focus(aes(y = p, label = label, info = info), data = quartiles) +
+  scale_info_discrete("Quartiles") +
+  labs(x = "Minutes to next eruption", y = "Cumulative probability") +
+  theme_minimal()
+```
+
+`type = 1` makes `quantile()` return observed values, so the markers sit on
+the steps of the empirical curve.
+
+## Positions from a stat
+
+`geom_focus()` takes a `stat` like other geoms, so markers can show computed
+values. With `stat = "summary"` each marker sits at the class mean and shows
+it as the label.
+
+```{r}
+#| label: summary
+ggplot(mpg, aes(class, hwy)) +
+  geom_jitter(width = 0.2, height = 0, colour = "grey70") +
+  geom_focus(
+    aes(label = after_stat(round(y))),
+    stat = "summary",
+    fun = mean
+  ) +
+  labs(x = NULL, y = "Highway miles per gallon") +
+  theme_minimal()
+```
+
+## Other coordinate systems
+
+Markers are placed by the plot's coordinate system, so they follow it. The
+bar chart above in polar coordinates:
+
+```{r}
+#| label: radial
+ggplot(classes, aes(class, n)) +
+  geom_col(fill = "grey80") +
+  geom_focus(aes(info = class, focus = n > 40)) +
+  scale_info_discrete("Most common") +
+  coord_radial() +
+  labs(x = NULL, y = NULL) +
+  theme_minimal()
+```

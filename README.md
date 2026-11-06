@@ -4,26 +4,29 @@
 # ggindex <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml/badge.svg?branch=main)](https://github.com/discindo/ggindex/actions/workflows/R-CMD-check.yml)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/ggindex)](https://CRAN.R-project.org/package=ggindex)
-[![CRAN\_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggindex)](https://CRAN.R-project.org/package=ggindex)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/ggindex)](https://CRAN.R-project.org/package=ggindex)
+[![CRAN_Downloads](https://cranlogs.r-pkg.org/badges/grand-total/ggindex)](https://CRAN.R-project.org/package=ggindex)
 [![DOI](https://img.shields.io/badge/DOI-10.32614%2FCRAN.package.ggindex-blue)](https://doi.org/10.32614/CRAN.package.ggindex)
-[![Coverage Status](https://codecov.io/gh/discindo/ggindex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex/branch/main)
-[![ggindex status badge](https://discindo.r-universe.dev/ggindex/badges/version)](https://discindo.r-universe.dev/ggindex)
+[![Coverage
+Status](https://codecov.io/gh/discindo/ggindex/branch/main/graph/badge.svg)](https://app.codecov.io/gh/discindo/ggindex/branch/main)
+[![ggindex status
+badge](https://discindo.r-universe.dev/ggindex/badges/version)](https://discindo.r-universe.dev/ggindex)
 <!-- badges: end -->
 
-`{ggindex}` marks selected points of a ggplot2 plot with numbered
-markers and explains the numbers in a legend, as on an annotated map.
+`ggindex` marks selected points of a ggplot2 plot with numbered markers
+and explains the numbers in a legend, as on an annotated map.
 
 ## Installation
 
-Install the released version of `{ggindex}` from CRAN with:
+Install the released version of `ggindex` from CRAN with:
 
 ``` r
 install.packages("ggindex")
 ```
 
-You can install the development version of `{ggindex}` from
+You can install the development version of `ggindex` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -39,6 +42,7 @@ numbers yourself.
 
 ``` r
 library(ggplot2)
+#> Warning: package 'ggplot2' was built under R version 4.5.3
 library(ggindex)
 
 sites <- data.frame(
