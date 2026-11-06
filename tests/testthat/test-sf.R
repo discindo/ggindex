@@ -9,7 +9,12 @@ test_that("geom_sf_focus numbers simple features", {
     geom_sf(fill = "grey90", colour = "white") +
     geom_sf_focus(aes(info = NAME), data = nc_large)
 
-  expect_equal(layer_data(p, 2)$label, seq_len(nrow(nc_large)))
+  # Layer data rows are sorted by info, labels follow data order
+  data <- layer_data(p, 2)
+  expect_equal(
+    data$label[match(nc_large$NAME, data$info)],
+    seq_len(nrow(nc_large))
+  )
   vdiffr::expect_doppelganger("sf map", p)
 })
 
