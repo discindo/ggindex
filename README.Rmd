@@ -6,11 +6,13 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%",
+    dpi = 300,         
+    dev = "ragg_png"   
+  )
 ```
 
 # ggindex <img src="man/figures/logo.svg" align="right" height="139" alt="" />
